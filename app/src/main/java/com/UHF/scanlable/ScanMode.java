@@ -132,7 +132,8 @@ public class ScanMode extends Activity{
 			setContentView(R.layout.query);
 
 			 webView = findViewById(R.id.web_ad);
-			 TextView tex_da = findViewById(R.id.tex_da);
+			 //TextView tex_da = findViewById(R.id.tex_da);
+			 Button startF = findViewById(R.id.tex_da);
 			 stopButt = findViewById(R.id.st_but);
              CookieManager jejHFBE = CookieManager.getInstance();
              jejHFBE.setAcceptCookie(true);
@@ -202,22 +203,31 @@ public class ScanMode extends Activity{
 
 			Reader.rrlib.SetCallBack(callback);
 
+
+			startF.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+ 				Reader.rrlib.ScanRfid();
+				}
+			});
+
+
 			stopButt.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 
-					if(stopApparat) {
-						Log.d("df", " STOP !!! ");
+				//	if(stopApparat) {
+				//		Log.d("df", " STOP !!! ");
 						FullStop();
-						tex_da.setText("Stop");
-						stopApparat =false;
-					}else {
-						Log.d("df", " START !! ");
-
-						 Reader.rrlib.ScanRfid();
-						 tex_da.setText("Start");
-						stopApparat = true;
-					}
+				//		tex_da.setText("Stop");
+					//}else {
+//						Log.d("df", " START !! ");
+//
+//						 Reader.rrlib.ScanRfid();
+//						 tex_da.setText("Start");
+//						stopApparat = true;
+//					}stopApparat =false;
+//
 
 				}
 			});

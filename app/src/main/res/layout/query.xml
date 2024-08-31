@@ -16,13 +16,15 @@
 
 		<Button
 			android:id="@+id/st_but"
+			android:layout_marginStart="20dp"
 			android:layout_width="70dp"
 			android:layout_height="wrap_content"
 			android:text="@string/stopstart" />
 
-		<TextView
-			android:layout_marginStart="20dp"
+		<Button
+			android:layout_marginStart="70dp"
 			android:layout_width="120dp"
+			android:text="Stop"
 			android:layout_height="match_parent"
 			android:layout_gravity="center"
 			android:gravity="center"
