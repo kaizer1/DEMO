@@ -254,12 +254,12 @@ public class ScanMode extends Activity{
 								if(strmin.length()<2) strmin="0"+strmin;
 								String strsec = String.valueOf(sec);
 								if(strsec.length()<2) strsec="0"+strsec;
-								Log.d("ti", " Time = " + (strHour+":"+strmin+":"+strsec));
+								//Log.d("ti", " Time = " + (strHour+":"+strmin+":"+strsec));
 								//tv_time.setText(strHour+":"+strmin+":"+strsec);
 								break;
 							case MSG_UPDATE_SPEED:
 								String readSpeed = msg.obj+"";
-								Log.d("df", " speed = " + readSpeed);
+								//Log.d("df", " speed = " + readSpeed);
 								//tv_speed.setText(readSpeed);
 								break;
 							case MSG_UPDATE_STOP:
