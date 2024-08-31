@@ -215,6 +215,9 @@ public class ScanMode extends Activity{
 				@SuppressLint("HandlerLeak")
 				@Override
 				public void handleMessage(Message msg) {
+
+					Log.d("df", "test Stop !!!! number = " + msg.what);
+
 					try{
 						switch (msg.what) {
 							case MSG_UPDATE_LISTVIEW:
