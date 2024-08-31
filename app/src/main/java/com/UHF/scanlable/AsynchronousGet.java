@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 
@@ -26,11 +28,16 @@ public final class AsynchronousGet {
 
     private final OkHttpClient client = new OkHttpClient();
     private final String myString;
-      AsynchronousGet() {
+    private final JSONObject jsonSends;
+
+      AsynchronousGet(JSONObject jsonSends) {
+          this.jsonSends = jsonSends;
           myString = "https://beloson.ru/api/tags/push";
       }
 
     public void run() throws Exception {
+      //  RequestBody requestBody1 = new RequestBody(jsonSends, MediaType.parse("application/json; charset=utf-8"));
+
         RequestBody requestBody = new RequestBody() {
             @Nullable
             @Override
@@ -41,9 +48,9 @@ public final class AsynchronousGet {
             @Override
             public void writeTo(@NonNull BufferedSink bufferedSink) throws IOException {
                 //bufferedSink.writeUtf8("Numbers\n");
-                //bufferedSink.writeUtf8("-------\n");
+                bufferedSink.writeUtf8(jsonSends.toString());
                 //bufferedSink.writeUtf8(" It's my life !!! \n");
-                bufferedSink.writeUtf8(myString);
+              //  bufferedSink.writeUtf8(myString);
            /*     for (int i = 2; i <= 997; i++) {
                     bufferedSink.writeUtf8(String.format(" * %s = %s\n", i, factor(i)));
                 }*/
@@ -57,7 +64,7 @@ public final class AsynchronousGet {
 
          // 158.160.162.155/
         Request request = new Request.Builder()
-                //.url("http://losbalderdash.com/?baton=sdfsdf&id_dev=dsKOP4ffjjkh32dskdj&lanti=60.0023023&longi=59.930449&height=46&time_date=2024-19-09_21:19")  // ehi  //.url("http://loskutnikovgames.com/ehi") // was ehi                  .url("http://loswandernigs.com/ehi") // was ehi
+                //etsdf
                 .url(myString)
                 //.get()
                 .post(requestBody)

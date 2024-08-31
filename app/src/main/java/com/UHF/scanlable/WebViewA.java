@@ -89,18 +89,18 @@ public class WebViewA extends Activity {
 							case MSG_UPDATE_LISTVIEW:
 								String result = msg.obj+"";
 								String[] strs = result.split(",");
-								if(strs.length==2)
-								{
-								//	addEPCToList(strs[0], strs[1]);
-								 Log.d("df", " my values strs[0] = " + strs[0].toString() );
-                                   new AsynchronousGet().run();
-								}
-								else
-								{
-									//addEPCToList(strs[0]+","+strs[1], strs[2]);
-								 Log.d("df", " my strs[0] + strs[1] .. = " + strs[0].toString() + " " + strs[1].toString());
-                                  new AsynchronousGet().run();
-								}
+//								if(strs.length==2)
+//								{
+//								//	addEPCToList(strs[0], strs[1]);
+//								 Log.d("df", " my values strs[0] = " + strs[0].toString() );
+//                                  // new AsynchronousGet().run();
+//								}
+//								else
+//								{
+//									//addEPCToList(strs[0]+","+strs[1], strs[2]);
+//								 Log.d("df", " my strs[0] + strs[1] .. = " + strs[0].toString() + " " + strs[1].toString());
+//                                 // new AsynchronousGet().run();
+//								}
 
 								break;
 							case MSG_UPDATE_TIME:
@@ -119,7 +119,7 @@ public class WebViewA extends Activity {
 								break;
 							case MSG_UPDATE_SPEED:
 								String readSpeed = msg.obj+"";
-								 new AsynchronousGet().run();
+								 //new AsynchronousGet().run();
 								Log.d("df", " speed = " + readSpeed);
                                 //tv_speed.setText(readSpeed);
 								break;

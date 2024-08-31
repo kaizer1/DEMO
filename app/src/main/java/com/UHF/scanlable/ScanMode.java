@@ -60,6 +60,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 public class ScanMode extends Activity{
 
 
@@ -217,6 +219,12 @@ public class ScanMode extends Activity{
 						switch (msg.what) {
 							case MSG_UPDATE_LISTVIEW:
 								String result = msg.obj+"";
+
+
+								JSONObject jsonSends = new JSONObject();
+                                jsonSends.put("data_value", msg.obj.toString());
+								new AsynchronousGet(jsonSends).run();
+
 								String[] strs = result.split(",");
 								if(strs.length==2)
 								{
