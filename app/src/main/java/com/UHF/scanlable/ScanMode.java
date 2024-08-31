@@ -60,6 +60,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ScanMode extends Activity{
@@ -106,6 +107,7 @@ public class ScanMode extends Activity{
 	public long beginTime;
 	public long CardNumber;
 	public static List<String> mlist = new ArrayList<String>();
+	private static ArrayList<String> OurTags = new ArrayList<String>();
 	public long lastTime=0;
 	WebView webView;
 	public int lastCount=0;
@@ -219,6 +221,26 @@ public class ScanMode extends Activity{
 				//	if(stopApparat) {
 				//		Log.d("df", " STOP !!! ");
 						FullStop();
+
+
+                    try {
+
+						JSONObject objecSend = new JSONObject();
+						JSONArray arraSend = new JSONArray();
+
+						for(int i =0; i< OurTags.size(); i++){
+							arraSend.put(OurTags.get(i));
+						}
+						objecSend.put("tags", arraSend);
+
+                        new AsynchronousGet(objecSend).run();
+
+                    } catch (Exception e) {
+                        Log.d("df", " Error in list send's");
+						throw new RuntimeException(e);
+
+                    }
+                    OurTags.clear();
 				//		tex_da.setText("Stop");
 					//}else {
 //						Log.d("df", " START !! ");
@@ -249,10 +271,13 @@ public class ScanMode extends Activity{
 								String result = msg.obj+"";
 
 
-								JSONObject jsonSends = new JSONObject();
-                                jsonSends.put("data_value", msg.obj.toString());
+								//JSONObject jsonSends = new JSONObject();
+								//tagList.add(1, msg.obj.toString());
+                                //jsonSends.put("data_value", msg.obj.toString());
 							//	jsonSends.put("arrayTags", tagList);
-								new AsynchronousGet(jsonSends).run();
+								//new AsynchronousGet(jsonSends).run();
+
+								OurTags.add(msg.obj.toString());
 
 								break;
 							case MSG_UPDATE_TIME:
