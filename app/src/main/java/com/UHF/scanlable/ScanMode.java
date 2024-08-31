@@ -88,6 +88,7 @@ public class ScanMode extends Activity{
 	private Spinner spfactory;
 
 	LinearLayout lyoutled;
+	boolean stopApparat = true;
 
 	public static String epc;
 	//private Button btnFilter;//过滤
@@ -203,7 +204,16 @@ public class ScanMode extends Activity{
 			stopButt.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					FullStop();
+
+					if(stopApparat) {
+						FullStop();
+						stopApparat =false;
+					}else {
+
+						 Reader.rrlib.ScanRfid();
+						stopApparat = true;
+					}
+
 				}
 			});
 
