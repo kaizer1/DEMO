@@ -209,13 +209,13 @@ public class ScanMode extends Activity{
 					if(stopApparat) {
 						Log.d("df", " STOP !!! ");
 						FullStop();
-						tex_da.setText(R.string.start_work);
+						tex_da.setText("Stop");
 						stopApparat =false;
 					}else {
 						Log.d("df", " START !! ");
 
 						 Reader.rrlib.ScanRfid();
-						 tex_da.setText(R.string.stop_work);
+						 tex_da.setText("Start");
 						stopApparat = true;
 					}
 
