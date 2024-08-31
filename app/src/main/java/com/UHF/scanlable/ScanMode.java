@@ -119,6 +119,9 @@ public class ScanMode extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		try
@@ -420,6 +423,7 @@ public class ScanMode extends Activity{
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
+		OtgUtils.setPOGOPINEnable(true);
 		super.onResume();
 		setOpenScan523(false);
 		isStopThread =false;

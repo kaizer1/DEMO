@@ -96,7 +96,7 @@ public class Connect232 extends AppCompatActivity {
 							mBaud57600View.setChecked(true);
 							initRfid();
 							Intent intent;
-							intent = new Intent().setClass(Connect232.this, MainActivity.class);
+							intent = new Intent().setClass(Connect232.this, ScanMode.class);
 							startActivity(intent);
 						}
 						else
@@ -107,7 +107,7 @@ public class Connect232 extends AppCompatActivity {
 								mBaud115200View.setChecked(true);
 								initRfid();
 								Intent intent;
-								intent = new Intent().setClass(Connect232.this, MainActivity.class);
+								intent = new Intent().setClass(Connect232.this, ScanMode.class);
 								startActivity(intent);
 							}
 							else
