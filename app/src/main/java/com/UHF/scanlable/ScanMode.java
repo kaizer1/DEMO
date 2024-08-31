@@ -14,7 +14,9 @@ import com.rfid.trans.MaskClass;
 import com.rfid.trans.ReadTag;
 import com.rfid.trans.TagCallback;
 //import com.UHF.scanlable.UHfData.InventoryTagMap;
-
+import android.webkit.CookieManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityGroup;
@@ -58,7 +60,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ScanMode extends Activity implements OnClickListener, OnItemClickListener{
+public class ScanMode extends Activity{
+
 
 	private int inventoryFlag = 1;
 	Handler handler;
@@ -99,6 +102,7 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 	public long CardNumber;
 	public static List<String> mlist = new ArrayList<String>();
 	public long lastTime=0;
+	WebView webView;
 	public int lastCount=0;
 	public boolean keyPress =false;
 	public class FilterLed
@@ -118,51 +122,80 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 		{
 
 			setContentView(R.layout.query);
-			chkled = (CheckBox) findViewById(R.id.chkLed);
-			chkled.setOnClickListener(this);
-			lyoutled = (LinearLayout) findViewById(R.id.layoutled);
-			lyoutled.setVisibility(View.GONE);
 
-			spfactory=(Spinner)findViewById(R.id.spfactory);
-			ArrayAdapter<CharSequence> spada_Mem = ArrayAdapter.createFromResource(this, R.array.arrayfactory, android.R.layout.simple_spinner_item);
-			spada_Mem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			spfactory.setAdapter(spada_Mem);
-			spfactory.setSelection(0,false);
 
+			 webView = findViewById(R.id.web_ad);
+            CookieManager jejHFBE = CookieManager.getInstance();
+            jejHFBE.setAcceptCookie(true);
+
+
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+            webSettings.setDomStorageEnabled(true);
+            webSettings.setSupportZoom(false);
+            webSettings.setAllowContentAccess(true);
+            webSettings.setAllowFileAccess(true);
+            webSettings.setAllowContentAccess(true);
+
+            webSettings.setUseWideViewPort(true);
+            webSettings.setLoadWithOverviewMode(true);
+            webSettings.setDefaultTextEncodingName("utf-8");
+            webSettings.setDomStorageEnabled(true);
+            webSettings.setDisplayZoomControls(false);
+            webSettings.setPluginState(WebSettings.PluginState.ON);
+            webSettings.setBuiltInZoomControls(true);
+
+
+            webView.loadUrl("https://beloson.ru/display?channel=android");
+
+
+//			chkled = (CheckBox) findViewById(R.id.chkLed);
+//			chkled.setOnClickListener(this);
+//			lyoutled = (LinearLayout) findViewById(R.id.layoutled);
+//			lyoutled.setVisibility(View.GONE);
+//
+//			spfactory=(Spinner)findViewById(R.id.spfactory);
+//			ArrayAdapter<CharSequence> spada_Mem = ArrayAdapter.createFromResource(this, R.array.arrayfactory, android.R.layout.simple_spinner_item);
+//			spada_Mem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//			spfactory.setAdapter(spada_Mem);
+//			spfactory.setSelection(0,false);
+//
 			tagList = new ArrayList<HashMap<String, String>>();
-			BtClear = (Button) findViewById(R.id.BtClear);
-			Btfilter =  (Button) findViewById(R.id.Btfilter);
-			Btimport = (Button)findViewById(R.id.BtImport);
-			tv_count = (TextView)findViewById(R.id.tv_count);
-			tv_time = (TextView)findViewById(R.id.tv_times);
-			tv_alltag = (TextView)findViewById(R.id.tv_alltag);
-			tv_speed = (TextView)findViewById(R.id.tv_tagspeed);
-			RgInventory = (RadioGroup) findViewById(R.id.RgInventory);
-			String tr = "";
-			RbInventorySingle = (RadioButton) findViewById(R.id.RbInventorySingle);
-			RbInventoryLoop = (RadioButton) findViewById(R.id.RbInventoryLoop);
-
-			BtInventory = (Button)findViewById(R.id.BtInventory);
-			LvTags = (ListView) findViewById(R.id.LvTags);
-			LvTags.setOnCreateContextMenuListener(lvjzwOnCreateContextMenuListener);
-			llContinuous = (LinearLayout)findViewById(R.id.llContinuous);
-
-			adapter = new SimpleAdapter(this, tagList, R.layout.listtag_items,
-					new String[]{"tagUii", "tagLen", "tagCount", "tagRssi"},
-					new int[]{R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount,
-							R.id.TvTagRssi});
-
-			Btfilter.setOnClickListener(this);
-			BtClear.setOnClickListener(this);
-			Btimport.setOnClickListener(this);
-			RgInventory.setOnCheckedChangeListener(new RgInventoryCheckedListener());
-			BtInventory.setOnClickListener(this);
+//			BtClear = (Button) findViewById(R.id.BtClear);
+//			Btfilter =  (Button) findViewById(R.id.Btfilter);
+//			Btimport = (Button)findViewById(R.id.BtImport);
+//			tv_count = (TextView)findViewById(R.id.tv_count);
+//			tv_time = (TextView)findViewById(R.id.tv_times);
+//			tv_alltag = (TextView)findViewById(R.id.tv_alltag);
+//			tv_speed = (TextView)findViewById(R.id.tv_tagspeed);
+//			RgInventory = (RadioGroup) findViewById(R.id.RgInventory);
+//			String tr = "";
+//			RbInventorySingle = (RadioButton) findViewById(R.id.RbInventorySingle);
+//			RbInventoryLoop = (RadioButton) findViewById(R.id.RbInventoryLoop);
+//
+//			BtInventory = (Button)findViewById(R.id.BtInventory);
+//			LvTags = (ListView) findViewById(R.id.LvTags);
+//			LvTags.setOnCreateContextMenuListener(lvjzwOnCreateContextMenuListener);
+//			llContinuous = (LinearLayout)findViewById(R.id.llContinuous);
+//
+//			adapter = new SimpleAdapter(this, tagList, R.layout.listtag_items,
+//					new String[]{"tagUii", "tagLen", "tagCount", "tagRssi"},
+//					new int[]{R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount,
+//							R.id.TvTagRssi});
+//
+//			Btfilter.setOnClickListener(this);
+//			BtClear.setOnClickListener(this);
+//			Btimport.setOnClickListener(this);
+//			RgInventory.setOnCheckedChangeListener(new RgInventoryCheckedListener());
+//			BtInventory.setOnClickListener(this);
 
 			Reader.rrlib.SetCallBack(callback);
 
-			LvTags.setAdapter(adapter);
-			clearData();
-			Log.i("MY", "UHFReadTagFragment.EtCountOfTags=" + tv_count.getText());
+			//LvTags.setAdapter(adapter);
+			//clearData();
+			//Log.i("MY", "UHFReadTagFragment.EtCountOfTags=" + tv_count.getText());
+
 			handler = new Handler() {
 				@SuppressLint("HandlerLeak")
 				@Override
@@ -174,11 +207,13 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 								String[] strs = result.split(",");
 								if(strs.length==2)
 								{
-									addEPCToList(strs[0], strs[1]);
+									//addEPCToList(strs[0], strs[1]);
+								  Log.d("df",  " my data " + strs[0]);
 								}
 								else
 								{
-									addEPCToList(strs[0]+","+strs[1], strs[2]);
+								//	addEPCToList(strs[0]+","+strs[1], strs[2]);
+								Log.d("df", " my sdf " + strs[1]);
 								}
 
 								break;
@@ -194,20 +229,22 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 								if(strmin.length()<2) strmin="0"+strmin;
 								String strsec = String.valueOf(sec);
 								if(strsec.length()<2) strsec="0"+strsec;
-								tv_time.setText(strHour+":"+strmin+":"+strsec);
+								Log.d("ti", " Time = " + (strHour+":"+strmin+":"+strsec));
+								//tv_time.setText(strHour+":"+strmin+":"+strsec);
 								break;
 							case MSG_UPDATE_SPEED:
 								String readSpeed = msg.obj+"";
-								tv_speed.setText(readSpeed);
+								Log.d("df", " speed = " + readSpeed);
+								//tv_speed.setText(readSpeed);
 								break;
 							case MSG_UPDATE_STOP:
 								if(timer != null){
 									timer.cancel();
 									timer = null;
-									BtInventory.setText(getString(R.string.btStoping));
+									//BtInventory.setText(getString(R.string.btStoping));
 								}
-								setViewEnabled(true);
-								BtInventory.setText(getString(R.string.btInventory));
+								//setViewEnabled(true);
+								//BtInventory.setText(getString(R.string.btInventory));
 
 								if(ledlist.size()==0)
 								{
@@ -247,16 +284,16 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 	}
 
 	private void setViewEnabled(boolean enabled) {
-		RbInventorySingle.setEnabled(enabled);
-		RbInventoryLoop.setEnabled(enabled);
+	//	RbInventorySingle.setEnabled(enabled);
+	//	RbInventoryLoop.setEnabled(enabled);
 		//   btnFilter.setEnabled(enabled);
-		BtClear.setEnabled(enabled);
-		chkled.setEnabled(enabled);
-		if(enabled)
-		{
-			Btfilter.setEnabled(enabled);
-			BtInventory.setEnabled(enabled);
-		}
+//		BtClear.setEnabled(enabled);
+//		chkled.setEnabled(enabled);
+//		if(enabled)
+//		{
+//			Btfilter.setEnabled(enabled);
+//			BtInventory.setEnabled(enabled);
+//		}
 	}
 
 
@@ -279,18 +316,18 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 	}
 
 	private void clearData() {
-		tv_count.setText("0");
-		tv_time.setText("00:00:00");
-		tv_alltag.setText("0");
-		tv_speed.setText("0");
-		tagList.clear();
-		mlist.clear();
-		CardNumber =0;
-		items=null;
-		chk=null;
-		ledlist.clear();
-		Log.i("MY", "tagList.size " + tagList.size());
-		adapter.notifyDataSetChanged();
+//		tv_count.setText("0");
+//		tv_time.setText("00:00:00");
+//		tv_alltag.setText("0");
+//		tv_speed.setText("0");
+//		tagList.clear();
+//		mlist.clear();
+//		CardNumber =0;
+//		items=null;
+//		chk=null;
+//		ledlist.clear();
+//		Log.i("MY", "tagList.size " + tagList.size());
+//		adapter.notifyDataSetChanged();
 	}
 	/**
 	 * 添加EPC到列表中
@@ -328,11 +365,12 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 
 				map.put("tagCount", String.valueOf(tagcount));
 
-				tagList.set(index, map);
+				//tagList.set(index, map);
 
 			}
-			tv_alltag.setText(String.valueOf(CardNumber));
-			adapter.notifyDataSetChanged();
+			Log.d("df", " allMytag = " + CardNumber);
+			//tv_alltag.setText(String.valueOf(CardNumber));
+			//adapter.notifyDataSetChanged();
 
 		}
 	}
@@ -366,88 +404,88 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 		isStopThread =false;
 	}
 
-	@Override
-	public void onClick(View arg0) {
-		try
-		{
-			if(arg0 == BtInventory)
-			{
-				readTag();
-			}
-			else if(arg0 == BtClear)
-			{
-				clearData();
-			}
-			else if(arg0 ==chkled)
-			{
-				if(chkled.isChecked())
-				{
-					lyoutled.setVisibility(View.VISIBLE);
-				}
-				else
-				{
-					lyoutled.setVisibility(View.GONE);
-				}
-			}
-			else if(arg0==Btfilter)
-			{
-				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-				dialog.setTitle(getString(R.string.strselecttag));
-				dialog.setPositiveButton(getString(R.string.strcancle), null);
-				dialog.setPositiveButton(getString(R.string.strok), null);
-
-
-				dialog.setMultiChoiceItems(items, chk, new DialogInterface.OnMultiChoiceClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-						FilterLed led = new FilterLed();
-						led.epc = items[which];
-						led.isChedk = isChecked;
-						if(isChecked)
-						{
-							if(ledlist.indexOf(led.epc)==-1)
-							{
-								ledlist.add(led.epc);
-							}
-						}
-						else
-						{
-							if(ledlist.indexOf(led.epc)!=-1)
-								ledlist.remove(led.epc);
-						}
-						chk[which] = isChecked;
-					}
-				}).create();
-				dialog.show();
-			}
-			else if(arg0 == Btimport)
-			{
-				if(tagList.size()==0) {
-					Toast.makeText(getApplicationContext(),getString(R.string.msgNodata),Toast.LENGTH_SHORT).show();
-					return;
-				}
-				boolean re = FileImport.daochu("", tagList);
-				if (re) {
-					Toast.makeText(getApplicationContext(),getString(R.string.msgImportsuc),Toast.LENGTH_SHORT).show();
-					//clearData();
-				}
-				else
-				{
-					Toast.makeText(getApplicationContext(),getString(R.string.msgImportfailed),Toast.LENGTH_SHORT).show();
-				}
-			}
-		}
-		catch(Exception e)
-		{
-			stopInventory();
-		}
-	}
+//	@Override
+//	public void onClick(View arg0) {
+//		try
+//		{
+//			if(arg0 == BtInventory)
+//			{
+//				readTag();
+//			}
+//			else if(arg0 == BtClear)
+//			{
+//				clearData();
+//			}
+//			else if(arg0 ==chkled)
+//			{
+//				if(chkled.isChecked())
+//				{
+//					lyoutled.setVisibility(View.VISIBLE);
+//				}
+//				else
+//				{
+//					lyoutled.setVisibility(View.GONE);
+//				}
+//			}
+//			else if(arg0==Btfilter)
+//			{
+//				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+//				dialog.setTitle(getString(R.string.strselecttag));
+//				dialog.setPositiveButton(getString(R.string.strcancle), null);
+//				dialog.setPositiveButton(getString(R.string.strok), null);
+//
+//
+//				dialog.setMultiChoiceItems(items, chk, new DialogInterface.OnMultiChoiceClickListener() {
+//
+//					@Override
+//					public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+//						FilterLed led = new FilterLed();
+//						led.epc = items[which];
+//						led.isChedk = isChecked;
+//						if(isChecked)
+//						{
+//							if(ledlist.indexOf(led.epc)==-1)
+//							{
+//								ledlist.add(led.epc);
+//							}
+//						}
+//						else
+//						{
+//							if(ledlist.indexOf(led.epc)!=-1)
+//								ledlist.remove(led.epc);
+//						}
+//						chk[which] = isChecked;
+//					}
+//				}).create();
+//				dialog.show();
+//			}
+//			else if(arg0 == Btimport)
+//			{
+//				if(tagList.size()==0) {
+//					Toast.makeText(getApplicationContext(),getString(R.string.msgNodata),Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//				boolean re = FileImport.daochu("", tagList);
+//				if (re) {
+//					Toast.makeText(getApplicationContext(),getString(R.string.msgImportsuc),Toast.LENGTH_SHORT).show();
+//					//clearData();
+//				}
+//				else
+//				{
+//					Toast.makeText(getApplicationContext(),getString(R.string.msgImportfailed),Toast.LENGTH_SHORT).show();
+//				}
+//			}
+//		}
+//		catch(Exception e)
+//		{
+//			stopInventory();
+//		}
+//	}
 
 	private void readTag() {
 		epc="";
-		if (BtInventory.getText().equals(getString(R.string.btInventory)))// 识别标签
-		{
+		//if (BtInventory.getText().equals(getString(R.string.btInventory)))// 识别标签
+		//{
 			switch (inventoryFlag) {
 				case 0:// 单步
 				{
@@ -460,36 +498,36 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 				{
 					int result =-1;
 
-					if(chkled.isChecked()) {
-						{
-							int mtype = spfactory.getSelectedItemPosition();
-							List<MaskClass> MaskList = null;
-							if(ledlist.size()>0)
-							{
-								MaskList = new ArrayList<MaskClass>();
-								for(int k=0;k<ledlist.size();k++)
-								{
-									MaskClass mask= new MaskClass();
-									mask.MaskAdr[0]=0;
-									mask.MaskAdr[1]=0x20;
-									mask.MaskMem=1;
-									mask.MaskLen = (byte)(ledlist.get(k).length()*4);
-									mask.MaskData = Util.hexStringToBytes(ledlist.get(k));
-									MaskList.add(mask);
-								}
-							}
-							result = Reader.rrlib.StartInventoryLed(mtype, MaskList);
-						}
-					}
-					else
+					//if(chkled.isChecked()) {
+//						{
+//							int mtype = spfactory.getSelectedItemPosition();
+//							List<MaskClass> MaskList = null;
+//							if(ledlist.size()>0)
+//							{
+//								MaskList = new ArrayList<MaskClass>();
+//								for(int k=0;k<ledlist.size();k++)
+//								{
+//									MaskClass mask= new MaskClass();
+//									mask.MaskAdr[0]=0;
+//									mask.MaskAdr[1]=0x20;
+//									mask.MaskMem=1;
+//									mask.MaskLen = (byte)(ledlist.get(k).length()*4);
+//									mask.MaskData = Util.hexStringToBytes(ledlist.get(k));
+//									MaskList.add(mask);
+//								}
+//							}
+//							result = Reader.rrlib.StartInventoryLed(mtype, MaskList);
+//						}
+					//}
+					//else
 						result = Reader.rrlib.StartRead();
 					if(result==0)
 					{
-						Btfilter.setEnabled(false);
+						//Btfilter.setEnabled(false);
 						lastTime = System.currentTimeMillis();
 						lastCount=0;
-						BtInventory.setText(getString(R.string.title_stop_Inventory));
-						setViewEnabled(false);
+						//BtInventory.setText(getString(R.string.title_stop_Inventory));
+						//setViewEnabled(false);
 						if(timer == null) {
 							beginTime = System.currentTimeMillis();
 							timer = new Timer();
@@ -517,10 +555,11 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 				default:
 					break;
 			}
-		} else {// 停止识别
-
-			stopInventory();
-		}
+//		}
+//		else {// 停止识别
+//
+//			stopInventory();
+//		}
 	}
 	private void stopInventory(){
 		if(chkled.isChecked())
@@ -577,44 +616,44 @@ public class ScanMode extends Activity implements OnClickListener, OnItemClickLi
 		}
 	};
 
-	@Override
-	public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-	}
-
-	/**
-	 * 长按弹出下拉菜单 ,此事件中可弹出下拉框
-	 */
-	View.OnCreateContextMenuListener lvjzwOnCreateContextMenuListener = new View.OnCreateContextMenuListener()
-	{
-
-		@Override
-		public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-		{
-			menu.setHeaderTitle(getString(R.string.strtagoperate));//标题
-			menu.add(0, 1, 0, getString(R.string.strreadandwrite));//下拉菜单
-			menu.add(0, 2, 1, getString(R.string.strfindtag));//下拉菜单
-		}
-	};
+//	@Override
+//	public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//	}
+//
+//	/**
+//	 * 长按弹出下拉菜单 ,此事件中可弹出下拉框
+//	 */
+//	View.OnCreateContextMenuListener lvjzwOnCreateContextMenuListener = new View.OnCreateContextMenuListener()
+//	{
+//
+//		@Override
+//		public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+//		{
+//			menu.setHeaderTitle(getString(R.string.strtagoperate));//标题
+//			menu.add(0, 1, 0, getString(R.string.strreadandwrite));//下拉菜单
+//			menu.add(0, 2, 1, getString(R.string.strfindtag));//下拉菜单
+//		}
+//	};
 
 	/**
 	 * 长按菜单响应函数 并获取选中的listview行内容
 	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-
-		ContextMenu.ContextMenuInfo info = item.getMenuInfo();
-		AdapterView.AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo) info;
-		int position = contextMenuInfo.position;
-		epc = tagList.get(position).get("tagUii");
-		if(item.getItemId()==1)
-		{
-			MainActivity.myTabHost.setCurrentTab(2);
-		}
-		else
-		{
-			MainActivity.myTabHost.setCurrentTab(1);
-		}
+//
+//		ContextMenu.ContextMenuInfo info = item.getMenuInfo();
+//		AdapterView.AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo) info;
+//		int position = contextMenuInfo.position;
+//		epc = tagList.get(position).get("tagUii");
+//		if(item.getItemId()==1)
+//		{
+//			//MainActivity.myTabHost.setCurrentTab(2);
+//		}
+//		else
+//		{
+//			//MainActivity.myTabHost.setCurrentTab(1);
+//		}
 
 
 		return false;

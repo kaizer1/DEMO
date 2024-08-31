@@ -5,6 +5,7 @@ import static com.UHF.scanlable.ScanMode.MSG_UPDATE_STOP;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.device.DeviceManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class WebViewA extends Activity {
 	    public int lastCount=0;
 		String items[]=null;
 	    boolean chk[]=null;
+		public boolean isStopThread=false;
 
         MsgCallback callback = new MsgCallback();
 
@@ -160,6 +162,8 @@ public class WebViewA extends Activity {
 		super.onResume();
 
 
+			setOpenScan523(false);
+		isStopThread =false;
 
 //        	switch (Connect232.baud)
 //		{
@@ -203,6 +207,8 @@ public class WebViewA extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+				setOpenScan523(true);
+		stopInventory();
 	}
 
 	@Override
@@ -211,6 +217,16 @@ public class WebViewA extends Activity {
 		Reader.rrlib.DisConnect();
 	}
 
+
+	private void stopInventory(){
+	//	if(chkled.isChecked())/
+
+		//{
+	//		Reader.rrlib.StopInventoryLed();
+	//	}
+		//else
+			Reader.rrlib.StopRead();
+	}
 
 
     	private void ReadFocus()
@@ -459,6 +475,25 @@ public class WebViewA extends Activity {
 			handler.sendMessage(msg);
 		}
 	};
+
+	private void setOpenScan523(boolean isopen) {
+		try{
+			DeviceManager mDeviceManager = new DeviceManager();
+			if (mDeviceManager != null) {
+				if (isopen) {
+					//TODO 设置触发 523键值(手柄按钮) 扫描出光
+					mDeviceManager.setSettingProperty("persist-persist.sys.rfid.key", "0-");
+					mDeviceManager.setSettingProperty("persist-persist.sys.scan.key", "520-521-522-523-");//这里入参传入了哪些键值，在按下键值的的时候就会调起扫描头出光
+				}else {
+					//TODO 设置触发 523键值(手柄按钮) 不扫描出光
+					mDeviceManager.setSettingProperty("persist-persist.sys.rfid.key", "0-");
+					mDeviceManager.setSettingProperty("persist-persist.sys.scan.key", "520-521-522-");//这里入参传入了哪些键值，在按下键值的的时候就会调起扫描头出光
+				}
+			}
+		}catch(Exception ex)
+		{}
+	}
+
 
 
     private void ReadCheckAnt()
