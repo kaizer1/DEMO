@@ -251,8 +251,13 @@ public class ScanMode extends Activity{
 								//tv_speed.setText(readSpeed);
 								break;
 							case MSG_UPDATE_STOP:
-								Log.d("df", "we a STOOOPPPP !!!");
+								Log.d("df", "we are STOOOPPPP !!!");
 								FullStop();
+
+								 Reader.rrlib.StopInventoryLed();
+			                     Reader.rrlib.StopRead();
+
+
 								if(timer != null){
 									timer.cancel();
 									timer = null;
