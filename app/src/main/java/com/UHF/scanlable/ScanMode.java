@@ -163,6 +163,10 @@ public class ScanMode extends Activity{
             webView.loadUrl("https://beloson.ru/display?channel=android");
 
 
+			  JSONObject jsonObject1 = new JSONObject();
+			  jsonObject1.put("ms", "test 123");
+			   new AsynchronousGet(jsonObject1,2).run();
+
 //			chkled = (CheckBox) findViewById(R.id.chkLed);
 //			chkled.setOnClickListener(this);
 //			lyoutled = (LinearLayout) findViewById(R.id.layoutled);
@@ -233,7 +237,7 @@ public class ScanMode extends Activity{
 						}
 						objecSend.put("tags", arraSend);
 
-                        new AsynchronousGet(objecSend).run();
+                        new AsynchronousGet(objecSend,1).run();
 
                     } catch (Exception e) {
                         Log.d("df", " Error in list send's");
