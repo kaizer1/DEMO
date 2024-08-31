@@ -267,10 +267,10 @@ public class ScanMode extends Activity{
 								break;
 							case MSG_UPDATE_STOP:
 								//Log.d("df", "we are STOOOPPPP !!!");
-								FullStop();
+								//FullStop();
 
-								 Reader.rrlib.StopInventoryLed();
-			                     Reader.rrlib.StopRead();
+								 //Reader.rrlib.StopInventoryLed();
+			                     //Reader.rrlib.StopRead();
 
 
 								if(timer != null){
@@ -661,7 +661,7 @@ public class ScanMode extends Activity{
 			handler.sendMessage(msg);
 
 
-			FullStop();
+			//FullStop();
 		}
 	};
 
