@@ -247,6 +247,7 @@ public class ScanMode extends Activity{
 
                         new AsynchronousGet(objecSend,1).run();
 
+
                     } catch (Exception e) {
                         Log.d("df", " Error in list send's");
 						throw new RuntimeException(e);
@@ -359,7 +360,7 @@ public class ScanMode extends Activity{
 
 
 	private void FullStop(){
-		    Reader.rrlib.StopInventoryLed();
+		   // Reader.rrlib.StopInventoryLed();
 			Reader.rrlib.StopRead();
 	}
 
