@@ -215,7 +215,8 @@ public class ScanMode extends Activity{
 			startF.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
- 				Reader.rrlib.ScanRfid();
+ 				//Reader.rrlib.ScanRfid();
+					Reader.rrlib.StartRead();
 				}
 			});
 
