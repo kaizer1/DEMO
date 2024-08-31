@@ -206,9 +206,11 @@ public class ScanMode extends Activity{
 				public void onClick(View v) {
 
 					if(stopApparat) {
+						Log.d("df", " STOP !!! ");
 						FullStop();
 						stopApparat =false;
 					}else {
+						Log.d("df", " START !! ");
 
 						 Reader.rrlib.ScanRfid();
 						stopApparat = true;
