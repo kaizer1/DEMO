@@ -132,6 +132,7 @@ public class ScanMode extends Activity{
 			setContentView(R.layout.query);
 
 			 webView = findViewById(R.id.web_ad);
+			 TextView tex_da = findViewById(R.id.tex_da);
 			 stopButt = findViewById(R.id.st_but);
              CookieManager jejHFBE = CookieManager.getInstance();
              jejHFBE.setAcceptCookie(true);
@@ -208,11 +209,13 @@ public class ScanMode extends Activity{
 					if(stopApparat) {
 						Log.d("df", " STOP !!! ");
 						FullStop();
+						tex_da.setText(R.string.start_work);
 						stopApparat =false;
 					}else {
 						Log.d("df", " START !! ");
 
 						 Reader.rrlib.ScanRfid();
+						 tex_da.setText(R.string.stop_work);
 						stopApparat = true;
 					}
 

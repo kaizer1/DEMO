@@ -12,6 +12,8 @@
     <string name="stopa" translatable="false">Stop</string>
     <string name="stopstart" translatable="false">Start</string>
     <string name="dmin">MinFre:</string>
+    <string name="start_work" translatable="false">Start and Work</string>
+    <string name="stop_work" translatable="false">Stop</string>
     <string name="band">Band:</string>
     <string name="dmax">MaxFre:</string>
     <string name="power">Power:</string>
