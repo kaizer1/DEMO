@@ -91,6 +91,7 @@ public class ScanMode extends Activity{
 
 	public static String epc;
 	//private Button btnFilter;//过滤
+	private Button stopBut;
 	private LinearLayout llContinuous;
 	private HashMap<String, String> map;
 	PopupWindow popFilter;
@@ -130,6 +131,7 @@ public class ScanMode extends Activity{
 			setContentView(R.layout.query);
 
 			 webView = findViewById(R.id.web_ad);
+			 stopButt = findViewById(R.id.st_but);
              CookieManager jejHFBE = CookieManager.getInstance();
              jejHFBE.setAcceptCookie(true);
 
@@ -198,6 +200,12 @@ public class ScanMode extends Activity{
 
 			Reader.rrlib.SetCallBack(callback);
 
+			stopButt.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					FullStop();
+				}
+			});
 
 			//LvTags.setAdapter(adapter);
 			//clearData();
@@ -215,6 +223,7 @@ public class ScanMode extends Activity{
 
 								JSONObject jsonSends = new JSONObject();
                                 jsonSends.put("data_value", msg.obj.toString());
+							//	jsonSends.put("arrayTags", tagList);
 								new AsynchronousGet(jsonSends).run();
 
 								break;

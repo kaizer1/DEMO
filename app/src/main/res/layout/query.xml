@@ -8,19 +8,19 @@
 	android:descendantFocusability="blocksDescendants"
 	android:orientation="vertical" >
 
-<!--	<LinearLayout-->
-<!--		android:layout_width="match_parent"-->
-<!--		android:layout_height="50dp"-->
-<!--		android:orientation="horizontal"-->
-<!--		>-->
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:orientation="horizontal"
+		>
 
-<!--		<Button-->
-<!--			android:id="@+id/st_but"-->
-<!--			android:layout_width="70dp"-->
-<!--			android:layout_height="wrap_content"-->
-<!--			android:text="@string/stopstart" />-->
+		<Button
+			android:id="@+id/st_but"
+			android:layout_width="70dp"
+			android:layout_height="wrap_content"
+			android:text="@string/stopstart" />
 
-<!--	</LinearLayout>-->
+	</LinearLayout>
 
 	<WebView
 		android:layout_width="match_parent"
