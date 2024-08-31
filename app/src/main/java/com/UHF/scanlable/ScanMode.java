@@ -164,7 +164,9 @@ public class ScanMode extends Activity{
 
 
 			  JSONObject jsonObject1 = new JSONObject();
-			  jsonObject1.put("ms", "test 123");
+			  jsonObject1.put("msg", "test 123");
+			    jsonObject1.put("channel", "android");
+				  jsonObject1.put("e", "info");
 			   new AsynchronousGet(jsonObject1,2).run();
 
 //			chkled = (CheckBox) findViewById(R.id.chkLed);
@@ -235,7 +237,12 @@ public class ScanMode extends Activity{
 						for(int i =0; i< OurTags.size(); i++){
 							arraSend.put(OurTags.get(i));
 						}
-						objecSend.put("tags", arraSend);
+
+						objecSend.put("msg", arraSend);
+			            objecSend.put("channel", "android");
+				        objecSend.put("e", "scan");
+
+						//	objecSend.put("tags", arraSend);
 
                         new AsynchronousGet(objecSend,1).run();
 

@@ -40,23 +40,26 @@ public final class AsynchronousGet {
     public void run() throws Exception {
       //  RequestBody requestBody1 = new RequestBody(jsonSends, MediaType.parse("application/json; charset=utf-8"));
 
+     //   MediaType mediaType = MediaType.parse("application/json");
+        //RequestBody a2 = RequestBody.create(mediaType, "{\"msg\":\"data from tag\", \"channel\":\"android\", \"e\":\"scan\"}");
+
         RequestBody requestBody = new RequestBody() {
             @Nullable
             @Override
             public MediaType contentType() {
-                if(valueSend == 1)
+                //  if(valueSend == 1)
                return MediaType.parse("application/json; charset=utf-8");
-                else
-               return MediaType.parse("application/x-www-form-urlencoded");
+                //else
+                // return MediaType.parse("application/x-www-form-urlencoded");
             }
 
             @Override
             public void writeTo(@NonNull BufferedSink bufferedSink) throws IOException {
                 //bufferedSink.writeUtf8("Numbers\n");
-                if(valueSend == 1)
+                //if(valueSend == 1)
                 bufferedSink.writeUtf8(jsonSends.toString());
-                else
-                bufferedSink.writeUtf8("msg={"+jsonSends.toString()+"}");
+                //else
+               // bufferedSink.writeUtf8("msg={"+jsonSends.toString()+"}");
                 //bufferedSink.writeUtf8(" It's my life !!! \n");
               //  bufferedSink.writeUtf8(myString);
            /*     for (int i = 2; i <= 997; i++) {
