@@ -234,33 +234,12 @@ public class ScanMode extends Activity{
 
 				//	if(stopApparat) {
 				//		Log.d("df", " STOP !!! ");
-						FullStop();
 
 
-                    try {
+					//FullStop();
 
-						JSONObject objecSend = new JSONObject();
-						JSONArray arraSend = new JSONArray();
+					stopInventory();
 
-						for(int i =0; i< OurTags.size(); i++){
-							arraSend.put(OurTags.get(i));
-						}
-
-						objecSend.put("msg", arraSend);
-			            objecSend.put("channel", "android");
-				        objecSend.put("e", "scan");
-
-						//	objecSend.put("tags", arraSend);
-
-                        new AsynchronousGet(objecSend,1).run();
-
-
-                    } catch (Exception e) {
-                        Log.d("df", " Error in list send's");
-						throw new RuntimeException(e);
-
-                    }
-                    OurTags.clear();
 				//		tex_da.setText("Stop");
 					//}else {
 //						Log.d("df", " START !! ");
@@ -662,6 +641,7 @@ public class ScanMode extends Activity{
 			stopInventory();
 		}
 	}
+
 	private void stopInventory(){
 		//if(chkled.isChecked())
 		//{
@@ -669,6 +649,37 @@ public class ScanMode extends Activity{
 		//}
 		//else
 			Reader.rrlib.StopRead();
+
+
+
+			  try {
+
+				  JSONObject objecSend = new JSONObject();
+				  JSONArray arraSend = new JSONArray();
+
+
+				  if (!OurTags.isEmpty()) {
+
+					  for (int i = 0; i < OurTags.size(); i++) {
+						  arraSend.put(OurTags.get(i));
+					  }
+
+					  objecSend.put("msg", arraSend);
+					  objecSend.put("channel", "android");
+					  objecSend.put("e", "scan");
+
+					  new AsynchronousGet(objecSend, 1).run();
+				  }
+
+				  } catch(Exception e){
+					  Log.d("df", " Error in list send's");
+					  throw new RuntimeException(e);
+
+				  }
+				  OurTags.clear();
+
+
+
 	}
 
 	public class MsgCallback implements TagCallback {
