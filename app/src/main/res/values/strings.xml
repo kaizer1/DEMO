@@ -9,8 +9,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="version">Version:</string>
-    <string name="stopa" translatable="false">Stop</string>
-    <string name="stopstart" translatable="false">Start</string>
+    <string name="stopa" translatable="false">Start</string>
+    <string name="stopstart" translatable="false">Stop</string>
     <string name="dmin">MinFre:</string>
     <string name="start_work" translatable="false">Start and Work</string>
     <string name="stop_work" translatable="false">Stop</string>
