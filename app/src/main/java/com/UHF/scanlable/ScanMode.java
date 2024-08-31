@@ -216,7 +216,7 @@ public class ScanMode extends Activity{
 				@Override
 				public void handleMessage(Message msg) {
 
-					Log.d("df", "test Stop !!!! number = " + msg.what);
+					//Log.d("df", "test Stop !!!! number = " + msg.what);
 
 					try{
 						switch (msg.what) {
@@ -251,7 +251,7 @@ public class ScanMode extends Activity{
 								//tv_speed.setText(readSpeed);
 								break;
 							case MSG_UPDATE_STOP:
-								Log.d("df", "we are STOOOPPPP !!!");
+								//Log.d("df", "we are STOOOPPPP !!!");
 								FullStop();
 
 								 Reader.rrlib.StopInventoryLed();
@@ -644,6 +644,9 @@ public class ScanMode extends Activity{
 			msg.what = MSG_UPDATE_STOP;
 			msg.obj ="" ;
 			handler.sendMessage(msg);
+
+
+			FullStop();
 		}
 	};
 
