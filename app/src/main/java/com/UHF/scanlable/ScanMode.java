@@ -392,7 +392,7 @@ public class ScanMode extends Activity{
 //		if(enabled)
 //		{
 //			Btfilter.setEnabled(enabled);
-			BtInventory.setEnabled(enabled);
+		//BtInventory.setEnabled(enabled);
 //		}
 	}
 
