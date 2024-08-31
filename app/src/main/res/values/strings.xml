@@ -9,6 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="version">Version:</string>
+    <string name="stopa" translatable="false">Stop</string>
     <string name="dmin">MinFre:</string>
     <string name="band">Band:</string>
     <string name="dmax">MaxFre:</string>

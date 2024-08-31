@@ -68,6 +68,7 @@ public class ScanMode extends Activity{
 	private ArrayList<HashMap<String, String>> tagList;
 	SimpleAdapter adapter;
 	Button BtClear;
+	Button stopButt;
 	TextView tv_count;
 	TextView tv_time;
 	TextView tv_alltag;
@@ -123,6 +124,7 @@ public class ScanMode extends Activity{
 
 			setContentView(R.layout.query);
 
+			stopButt = findViewById(R.id.stop_but);
 
 			 webView = findViewById(R.id.web_ad);
             CookieManager jejHFBE = CookieManager.getInstance();
@@ -192,6 +194,17 @@ public class ScanMode extends Activity{
 
 			Reader.rrlib.SetCallBack(callback);
 
+
+			stopButt.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+
+					Reader.rrlib.StopInventoryLed();
+			        Reader.rrlib.StopRead();
+
+				}
+			});
 			//LvTags.setAdapter(adapter);
 			//clearData();
 			//Log.i("MY", "UHFReadTagFragment.EtCountOfTags=" + tv_count.getText());
