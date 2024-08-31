@@ -30,6 +30,13 @@
 			android:gravity="center"
 			android:id="@+id/tex_da"/>
 
+		 <Button
+			 android:layout_width="wrap_content"
+			 android:layout_height="match_parent"
+			 android:id="@+id/BtInventory"
+			 android:text="@string/btInventory"
+			 />
+
 	</LinearLayout>
 
 	<WebView

@@ -193,7 +193,14 @@ public class ScanMode extends Activity{
 //			RbInventorySingle = (RadioButton) findViewById(R.id.RbInventorySingle);
 //			RbInventoryLoop = (RadioButton) findViewById(R.id.RbInventoryLoop);
 //
-//			BtInventory = (Button)findViewById(R.id.BtInventory);
+ 			BtInventory = (Button)findViewById(R.id.BtInventory);
+
+			 BtInventory.setOnClickListener(new OnClickListener() {
+				 @Override
+				 public void onClick(View v) {
+					 readTag();
+				 }
+			 });
 //			LvTags = (ListView) findViewById(R.id.LvTags);
 //			LvTags.setOnCreateContextMenuListener(lvjzwOnCreateContextMenuListener);
 //			llContinuous = (LinearLayout)findViewById(R.id.llContinuous);
@@ -324,10 +331,10 @@ public class ScanMode extends Activity{
 								if(timer != null){
 									timer.cancel();
 									timer = null;
-									//BtInventory.setText(getString(R.string.btStoping));
+									BtInventory.setText(getString(R.string.btStoping));
 								}
-								//setViewEnabled(true);
-								//BtInventory.setText(getString(R.string.btInventory));
+								  setViewEnabled(true);
+								  BtInventory.setText(getString(R.string.btInventory));
 
 								if(ledlist.size()==0)
 								{
@@ -385,7 +392,7 @@ public class ScanMode extends Activity{
 //		if(enabled)
 //		{
 //			Btfilter.setEnabled(enabled);
-//			BtInventory.setEnabled(enabled);
+			BtInventory.setEnabled(enabled);
 //		}
 	}
 
@@ -578,8 +585,8 @@ public class ScanMode extends Activity{
 
 	private void readTag() {
 		epc="";
-		//if (BtInventory.getText().equals(getString(R.string.btInventory)))// 识别标签
-		//{
+		if (BtInventory.getText().equals(getString(R.string.btInventory)))// 识别标签
+		{
 			switch (inventoryFlag) {
 				case 0:// 单步
 				{
@@ -620,8 +627,8 @@ public class ScanMode extends Activity{
 						//Btfilter.setEnabled(false);
 						lastTime = System.currentTimeMillis();
 						lastCount=0;
-						//BtInventory.setText(getString(R.string.title_stop_Inventory));
-						//setViewEnabled(false);
+						BtInventory.setText(getString(R.string.title_stop_Inventory));
+						setViewEnabled(false);
 						if(timer == null) {
 							beginTime = System.currentTimeMillis();
 							timer = new Timer();
@@ -649,11 +656,11 @@ public class ScanMode extends Activity{
 				default:
 					break;
 			}
-//		}
-//		else {// 停止识别
-//
-//			stopInventory();
-//		}
+		}
+		else {// 停止识别
+
+			stopInventory();
+		}
 	}
 	private void stopInventory(){
 		if(chkled.isChecked())
@@ -713,45 +720,8 @@ public class ScanMode extends Activity{
 		}
 	};
 
-//	@Override
-//	public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//	}
-//
-//	/**
-//	 * 长按弹出下拉菜单 ,此事件中可弹出下拉框
-//	 */
-//	View.OnCreateContextMenuListener lvjzwOnCreateContextMenuListener = new View.OnCreateContextMenuListener()
-//	{
-//
-//		@Override
-//		public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-//		{
-//			menu.setHeaderTitle(getString(R.string.strtagoperate));//标题
-//			menu.add(0, 1, 0, getString(R.string.strreadandwrite));//下拉菜单
-//			menu.add(0, 2, 1, getString(R.string.strfindtag));//下拉菜单
-//		}
-//	};
-
-	/**
-	 * 长按菜单响应函数 并获取选中的listview行内容
-	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-//
-//		ContextMenu.ContextMenuInfo info = item.getMenuInfo();
-//		AdapterView.AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo) info;
-//		int position = contextMenuInfo.position;
-//		epc = tagList.get(position).get("tagUii");
-//		if(item.getItemId()==1)
-//		{
-//			//MainActivity.myTabHost.setCurrentTab(2);
-//		}
-//		else
-//		{
-//			//MainActivity.myTabHost.setCurrentTab(1);
-//		}
-
 
 		return false;
 	}
