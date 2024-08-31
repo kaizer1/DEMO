@@ -129,11 +129,9 @@ public class ScanMode extends Activity{
 
 			setContentView(R.layout.query);
 
-			stopButt = findViewById(R.id.stop_but);
-
 			 webView = findViewById(R.id.web_ad);
-            CookieManager jejHFBE = CookieManager.getInstance();
-            jejHFBE.setAcceptCookie(true);
+             CookieManager jejHFBE = CookieManager.getInstance();
+             jejHFBE.setAcceptCookie(true);
 
 
             WebSettings webSettings = webView.getSettings();
@@ -144,6 +142,7 @@ public class ScanMode extends Activity{
             webSettings.setAllowContentAccess(true);
             webSettings.setAllowFileAccess(true);
             webSettings.setAllowContentAccess(true);
+
 
             webSettings.setUseWideViewPort(true);
             webSettings.setLoadWithOverviewMode(true);
@@ -200,16 +199,6 @@ public class ScanMode extends Activity{
 			Reader.rrlib.SetCallBack(callback);
 
 
-			stopButt.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-
-
-					Reader.rrlib.StopInventoryLed();
-			        Reader.rrlib.StopRead();
-
-				}
-			});
 			//LvTags.setAdapter(adapter);
 			//clearData();
 			//Log.i("MY", "UHFReadTagFragment.EtCountOfTags=" + tv_count.getText());
@@ -227,18 +216,6 @@ public class ScanMode extends Activity{
 								JSONObject jsonSends = new JSONObject();
                                 jsonSends.put("data_value", msg.obj.toString());
 								new AsynchronousGet(jsonSends).run();
-
-								String[] strs = result.split(",");
-								if(strs.length==2)
-								{
-									//addEPCToList(strs[0], strs[1]);
-								  Log.d("df",  " my data " + strs[0]);
-								}
-								else
-								{
-								//	addEPCToList(strs[0]+","+strs[1], strs[2]);
-								Log.d("df", " my sdf " + strs[1]);
-								}
 
 								break;
 							case MSG_UPDATE_TIME:
@@ -262,6 +239,8 @@ public class ScanMode extends Activity{
 								//tv_speed.setText(readSpeed);
 								break;
 							case MSG_UPDATE_STOP:
+								Log.d("df", "we a STOOOPPPP !!!");
+								FullStop();
 								if(timer != null){
 									timer.cancel();
 									timer = null;
@@ -295,6 +274,16 @@ public class ScanMode extends Activity{
 
 		}
 	}
+
+
+// start it with:
+
+
+	private void FullStop(){
+		    Reader.rrlib.StopInventoryLed();
+			Reader.rrlib.StopRead();
+	}
+
 
 	public class RgInventoryCheckedListener implements RadioGroup.OnCheckedChangeListener {
 		@Override
