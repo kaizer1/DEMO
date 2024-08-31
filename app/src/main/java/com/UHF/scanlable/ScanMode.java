@@ -663,11 +663,11 @@ public class ScanMode extends Activity{
 		}
 	}
 	private void stopInventory(){
-		if(chkled.isChecked())
-		{
-			Reader.rrlib.StopInventoryLed();
-		}
-		else
+		//if(chkled.isChecked())
+		//{
+		//	Reader.rrlib.StopInventoryLed();
+		//}
+		//else
 			Reader.rrlib.StopRead();
 	}
 
@@ -740,9 +740,7 @@ public class ScanMode extends Activity{
 		super.onDestroy();
 	}
 
-	/**
-	 *按键扫描RFID
-	 **/
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode==523 && !keyPress)
@@ -757,9 +755,6 @@ public class ScanMode extends Activity{
 		return super.onKeyDown(keyCode, event);
 	}
 
-	/**
-	 *按键扫描RFID
-	 **/
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if(keyCode==523)
